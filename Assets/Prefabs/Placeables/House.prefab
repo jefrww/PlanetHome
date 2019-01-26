@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20706d5d9cbe41bbba965255f755e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 0
+  price: 20
   radius: 0
   collisions: 0
-  capacity: 0
+  capacity: 5
