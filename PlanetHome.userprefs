@@ -1,12 +1,13 @@
 ﻿<Properties StartupConfiguration="{E63776CF-68CF-3734-44B7-C6C4B8013463}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Shelter.cs">
     <Files>
       <File FileName="Assets/Scripts/Placeable.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Tree.cs" Line="6" Column="2" />
       <File FileName="Assets/Scripts/Shelter.cs" Line="10" Column="24" />
       <File FileName="Assets/Scripts/Factory.cs" Line="19" Column="6" />
       <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Player.cs" Line="122" Column="26" />
+      <File FileName="Assets/Scripts/Player.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/RotateWorld.cs" Line="6" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.PlanetHome PreferredExecutionTarget="Unity.Editor" />
