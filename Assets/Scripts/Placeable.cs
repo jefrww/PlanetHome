@@ -5,7 +5,7 @@ using UnityEngine;
 public class Placeable : MonoBehaviour {
 
     public int price;
-    public int radius;
+    //public int radius;
     public int collisions = 0;
 
     public virtual void Place()

@@ -98,7 +98,7 @@ public class CanvasManager : MonoBehaviour
 
 	}
 
-	public void UpdateHUD(int populationVal, int populationCapVal, int pollutionVal, int creditVal, int powerVal)
+	public void UpdateHUD(int populationVal, int populationCapVal, int pollutionVal, int creditVal, int powerVal, int year)
 	{
 		population.text = "Population: " + populationVal.ToString() + "/" + populationCapVal.ToString();
 		pollution.text = "Pollution: " + pollutionVal.ToString();
