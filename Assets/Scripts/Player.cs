@@ -47,22 +47,24 @@ public class Player : MonoBehaviour
 
     private void PreviewPlacement()
     {
+        // Wenn kein Bauobjekt ausgewählt ist aber noch ein previewObject besteht
         if (selected == ePlaceable.None && previewObj != null)
         {
             Destroy(previewObj);
         }
+        // Wenn ein Bauobjekt ausgewählt ist
         else if (selected != ePlaceable.None)
         {
-            if (previewObj == null)
-            {
-                UpdatePreviewObject();
-            }
-
             RaycastHit hit;
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit))
             {
+                // Falls die Preview vom Bauobjekt noch nicht instanziiert wurde
+                if (previewObj == null && IsValidPosition(hit))
+                {
+                    UpdatePreviewObject();
+                }
                 if (previewObj.GetComponent<Placeable>().collisions == 0)
                 {
                     previewMaterial.color = green;
@@ -76,7 +78,6 @@ public class Player : MonoBehaviour
                 var objRot = Quaternion.LookRotation(hit.normal);
                 previewObj.transform.position = hit.point;
                 previewObj.transform.rotation = objRot;
-
             }
             else
             {
@@ -153,9 +154,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    private bool IsValidLocation(RaycastHit hit)
-    {
-        return true;
+    private bool IsValidPosition(RaycastHit hit) {
+        if (hit.transform.CompareTag("Planet"))
+        {
+            return true;
+        }
+        return false;
     }
 
     private void UpdatePreviewObject()
@@ -164,8 +168,15 @@ public class Player : MonoBehaviour
         if (selected != ePlaceable.None)
         {
             previewObj = InstantiateSelected();
+            previewObj.transform.position = new Vector3(0, 0, 0);
             Physics.IgnoreCollision(previewObj.GetComponent<Collider>(), planet.GetComponent<Collider>());
-            previewObj.GetComponent<MeshRenderer>().material = previewMaterial;
+            var mats = previewObj.GetComponent<MeshRenderer>().materials;
+            for (int i = 0; i < mats.Length; i++)
+            {
+                Debug.Log("Change Mat");
+                mats[i] = previewMaterial;
+            }
+            previewObj.GetComponent<MeshRenderer>().materials = mats;
             previewObj.layer = 2;
         }
     }
