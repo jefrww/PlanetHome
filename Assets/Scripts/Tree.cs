@@ -5,6 +5,10 @@ using UnityEngine;
 public class Tree : Placeable
 {
 	public int pollutionRate;
+	void Awake()
+	{
+		GameManager.Instance.AddTree(this);
+	}
 	// Use this for initialization
 	void Start () {
 		

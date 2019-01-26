@@ -6,7 +6,11 @@ public class Factory : Placeable
 {
 	public int powerRate;
 	public int pollutionRate;
-
+	
+	void Awake()
+	{
+		GameManager.Instance.AddFactory(this);
+	}
 	// Use this for initialization
 	void Start () {
 		

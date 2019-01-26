@@ -6,6 +6,10 @@ public class Shelter : Placeable {
 
 	public int capacity;
 	// Use this for initialization
+	void Awake()
+	{
+		GameManager.Instance.AddShelter(this);
+	}
 	void Start () {
 		
 	}
