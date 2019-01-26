@@ -200,19 +200,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.2044731
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9788722
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
       propertyPath: m_RootOrder
@@ -242,6 +242,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2b695a5468bf34baf87d515d27ffa564, type: 2}
+    - target: {fileID: 400000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -23.597002
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
   m_IsPrefabAsset: 0
@@ -513,6 +517,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.08568437
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1016474566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1016474561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9cf6beb3b1b944a88e0b7dc8ba97190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalSpeed: 20
+  verticalSpeed: 20
 --- !u!1 &1052827484
 GameObject:
   m_ObjectHideFlags: 0
