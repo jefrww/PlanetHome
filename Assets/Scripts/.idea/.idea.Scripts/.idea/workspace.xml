@@ -10,10 +10,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Player.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-968">
+            <state relative-caret-position="-1694">
               <caret line="9" column="46" lean-forward="true" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
               <folding>
                 <marker date="1548491372775" expanded="false" signature="6:78" ph="..." />
@@ -60,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CanvasManager.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="97" selection-start-line="97" selection-end-line="97" />
+            <state relative-caret-position="1442">
+              <caret line="100" column="27" lean-forward="true" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="27" />
               <folding>
                 <marker date="1548486498347" expanded="true" signature="6:100" ph="..." />
                 <marker date="1548486498347" expanded="true" signature="144:3626" ph="{...}" />
@@ -253,12 +253,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548477478872</updated>
-      <workItem from="1548477483348" duration="18662000" />
+      <workItem from="1548477483348" duration="18799000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18662000" />
+    <option name="totallyTimeSpent" value="18799000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -411,9 +411,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CanvasManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1442">
+          <caret line="100" column="27" lean-forward="true" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="27" />
+          <folding>
+            <marker date="1548486498347" expanded="true" signature="6:100" ph="..." />
+            <marker date="1548486498347" expanded="true" signature="144:3626" ph="{...}" />
+            <marker date="1548486498347" expanded="true" signature="272:3185" ph="{...}" />
+            <marker date="1548486498347" expanded="true" signature="3241:3246" ph="{...}" />
+            <marker date="1548486498347" expanded="true" signature="3358:3624" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Player.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-968">
+        <state relative-caret-position="-1694">
           <caret line="9" column="46" lean-forward="true" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
           <folding>
             <marker date="1548491372775" expanded="false" signature="6:78" ph="..." />
@@ -437,20 +451,6 @@
             <marker date="1548491372775" expanded="true" signature="3833:4393" ph="{...}" />
             <marker date="1548491372775" expanded="true" signature="4449:4482" ph="{...}" />
             <marker date="1548491372775" expanded="true" signature="4522:4816" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CanvasManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="97" selection-start-line="97" selection-end-line="97" />
-          <folding>
-            <marker date="1548486498347" expanded="true" signature="6:100" ph="..." />
-            <marker date="1548486498347" expanded="true" signature="144:3626" ph="{...}" />
-            <marker date="1548486498347" expanded="true" signature="272:3185" ph="{...}" />
-            <marker date="1548486498347" expanded="true" signature="3241:3246" ph="{...}" />
-            <marker date="1548486498347" expanded="true" signature="3358:3624" ph="{...}" />
           </folding>
         </state>
       </provider>
