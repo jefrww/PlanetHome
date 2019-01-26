@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     public GameObject tree, house;
+    public Material previewMaterial;
+    public enum Placeable { None, Tree, House };
+    public Placeable selected = Placeable.Tree;
 
     private Camera mainCam;
-
-    public enum Placeable { Tree, House };
-    public Placeable selected = Placeable.Tree;
+    private GameObject previewObj;
 
     // Use this for initialization
     void Start()
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PreviewPlacement();
         if (Input.GetMouseButtonDown(0))
         {
             PlaceObject();
@@ -30,6 +31,35 @@ public class Player : MonoBehaviour
     public void SetSelected(string select)
     {
         selected = (Placeable)System.Enum.Parse(typeof(Placeable), select);
+        UpdatePreviewObject();
+    }
+
+    private void PreviewPlacement()
+    {
+        if (selected == Placeable.None && previewObj != null)
+        {
+            Destroy(previewObj);
+        }
+        else
+        {
+            if(previewObj == null)
+            {
+                UpdatePreviewObject();
+            }
+
+            RaycastHit hit;
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (IsValidLocation(hit))
+                {
+                    var objRot = Quaternion.LookRotation(hit.normal);
+                    previewObj.transform.position = hit.point;
+                    previewObj.transform.rotation = objRot;
+                }
+            }
+        }
     }
 
     private void PlaceObject()
@@ -39,31 +69,56 @@ public class Player : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.DrawLine(mainCam.transform.position, hit.point, Color.red);
-            Debug.DrawRay(mainCam.transform.position, mainCam.transform.position - hit.point, Color.green);
-            var startRot = Quaternion.LookRotation(hit.normal);
-
-            switch (selected)
+            Debug.Log(IsValidLocation(hit));
+            if(IsValidLocation(hit))
             {
-                case Placeable.Tree:
-                    {
-                        Instantiate(tree, hit.point, startRot);
-                        break;
-                    }
+                Debug.DrawLine(mainCam.transform.position, hit.point, Color.red);
+                Debug.DrawRay(mainCam.transform.position, mainCam.transform.position - hit.point, Color.green);
+                var objRot = Quaternion.LookRotation(hit.normal);
 
-                case Placeable.House:
-                    {
-                        Instantiate(house, hit.point, startRot);
-                        break;
-                    }
-                default:
-                    {
-                        Debug.Log("Error: No Placeable selected!");
-                        break;
-                    }
+                var placedObj = InstantiateSelected();
+                placedObj.transform.position = hit.point;
+                placedObj.transform.rotation = objRot;
             }
         }
-
-
     }
+
+    private GameObject InstantiateSelected()
+    {
+        switch (selected)
+        {
+            case Placeable.Tree:
+                {
+                    return (GameObject)Instantiate(tree);
+                }
+            case Placeable.House:
+                {
+                    return (GameObject)Instantiate(house);
+                }
+            default:
+                {
+                    Debug.Log("Error: No valid Placeable selected!");
+                    return null;
+                }
+        }
+    }
+
+    private bool IsValidLocation(RaycastHit hit)
+    {
+        if (hit.transform.gameObject.CompareTag("Planet"))
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    private void UpdatePreviewObject()
+    {
+        Destroy(previewObj);
+        previewObj = InstantiateSelected();
+        previewObj.GetComponent<MeshRenderer>().material = previewMaterial;
+        previewObj.layer = 2;
+    }
+
 }

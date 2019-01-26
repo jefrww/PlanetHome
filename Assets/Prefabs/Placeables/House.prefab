@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33545060204650480}
   - component: {fileID: 23670465199750660}
   - component: {fileID: 114522328459707286}
+  - component: {fileID: 65399257656975976}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452338434423438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.78, z: 0}
+  m_LocalPosition: {x: 0.46602625, y: 4.799215, z: 0.27010852}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,6 +85,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452338434423438}
   m_Mesh: {fileID: 4300000, guid: 852b05b1cf6034e7786720ab23edadc7, type: 3}
+--- !u!65 &65399257656975976
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452338434423438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.02, z: 0.03}
+  m_Center: {x: 0, y: 0, z: 0.015}
 --- !u!114 &114522328459707286
 MonoBehaviour:
   m_ObjectHideFlags: 1
