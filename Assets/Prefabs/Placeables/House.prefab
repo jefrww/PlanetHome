@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4422854147160558}
   - component: {fileID: 33545060204650480}
   - component: {fileID: 23670465199750660}
-  - component: {fileID: 114522328459707286}
+  - component: {fileID: 114176978511366124}
   - component: {fileID: 65399257656975976}
-  m_Layer: 0
+  - component: {fileID: 54108993427062720}
+  m_Layer: 2
   m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +86,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452338434423438}
   m_Mesh: {fileID: 4300000, guid: 852b05b1cf6034e7786720ab23edadc7, type: 3}
+--- !u!54 &54108993427062720
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452338434423438}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65399257656975976
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -97,7 +113,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.02, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0.015}
---- !u!114 &114522328459707286
+--- !u!114 &114176978511366124
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,6 +121,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1452338434423438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c20706d5d9cbe41bbba965255f755e5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d0bf0be3ea7642f18b23efed506e70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 0
+  radius: 0
+  collisions: 0
