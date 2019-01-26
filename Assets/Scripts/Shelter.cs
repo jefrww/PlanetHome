@@ -10,6 +10,7 @@ public class Shelter : Placeable
     public void Place()
     {
         GameManager.Instance.AddShelter(this);
+        GameManager.Instance.BuyBuilding(this.price);
     }
     void Start()
     {

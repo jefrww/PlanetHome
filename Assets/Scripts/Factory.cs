@@ -10,6 +10,7 @@ public class Factory : Placeable
     public void Place()
     {
         GameManager.Instance.AddFactory(this);
+        GameManager.Instance.BuyBuilding(this.price);
     }
     // Use this for initialization
     void Start()

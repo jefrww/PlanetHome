@@ -128,6 +128,8 @@ public class GameManager : MonoBehaviour
     public void UpdatePollution()
     {
         pollution += pollutionRate;
+        if (pollution < 0) pollution = 0;
+
     }
 
     public void UpdatePollutionRate()
@@ -149,7 +151,7 @@ public class GameManager : MonoBehaviour
     {
         if (population > populationCap)
         {
-            creditRate = (int) (populationCap * income);
+            creditRate = (int) ((populationCap-population) * income);
         }
         else
         {
@@ -177,6 +179,11 @@ public class GameManager : MonoBehaviour
     public void UpdateCredits()
     {
         credits += creditRate;
+    }
+
+    public void BuyBuilding(int price)
+    {
+        credits -= price;
     }
     public void selectBuilding()
     {
