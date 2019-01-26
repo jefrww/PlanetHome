@@ -246,6 +246,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -23.597002
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
   m_IsPrefabAsset: 0
@@ -339,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 1646174067933246, guid: d93afd3d2465142279569927dc3ad7a8, type: 2}
-  house: {fileID: 1452338434423438, guid: a9fb0d75764ea4e759b10389a25a936e, type: 2}
+  house: {fileID: 1007156947994880, guid: 6592bcf5885b14b0f815139725a6d0c3, type: 2}
   factory: {fileID: 1294953252269424, guid: 43a543fd6b3a845298d400e61c6924d0, type: 2}
   previewMaterial: {fileID: 2100000, guid: fac0858d55a0f4dfaac170da079ec637, type: 2}
 --- !u!1 &611927897
