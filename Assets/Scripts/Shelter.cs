@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shelter : MonoBehaviour {
+public class Shelter : Placeable {
 
+	public int capacity;
 	// Use this for initialization
 	void Start () {
 		
