@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tree : MonoBehaviour {
+public class Tree : Placeable {
 
 	// Use this for initialization
 	void Start () {

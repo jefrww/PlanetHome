@@ -6,16 +6,21 @@ public class Player : MonoBehaviour
 {
     public GameObject tree, house;
     public Material previewMaterial;
-    public enum Placeable { None, Tree, House };
-    public Placeable selected = Placeable.Tree;
+    public enum ePlaceable { None, Tree, House };
+    public ePlaceable selected = ePlaceable.Tree;
 
     private Camera mainCam;
+    private GameObject planet;
     private GameObject previewObj;
+    private bool canPlace = true;
+    private Color green = new Color(0, 1, 0, .5f);
+    private Color red = new Color(1, 0, 0, .5f);
 
     // Use this for initialization
     void Start()
     {
         mainCam = Camera.main;
+        planet = GameObject.FindWithTag("Planet");
     }
 
     // Update is called once per frame
@@ -30,19 +35,19 @@ public class Player : MonoBehaviour
 
     public void SetSelected(string select)
     {
-        selected = (Placeable)System.Enum.Parse(typeof(Placeable), select);
+        selected = (ePlaceable)System.Enum.Parse(typeof(ePlaceable), select);
         UpdatePreviewObject();
     }
 
     private void PreviewPlacement()
     {
-        if (selected == Placeable.None && previewObj != null)
+        if (selected == ePlaceable.None && previewObj != null)
         {
             Destroy(previewObj);
         }
         else
         {
-            if(previewObj == null)
+            if (previewObj == null)
             {
                 UpdatePreviewObject();
             }
@@ -54,10 +59,19 @@ public class Player : MonoBehaviour
             {
                 if (IsValidLocation(hit))
                 {
+                    if (previewObj.GetComponent<Placeable>().collisions == 0) {
+                        previewMaterial.color = green;
+                        canPlace = true;
+                    } else {
+                        previewMaterial.color = red;
+                        canPlace = false;
+                    }
                     var objRot = Quaternion.LookRotation(hit.normal);
                     previewObj.transform.position = hit.point;
                     previewObj.transform.rotation = objRot;
                 }
+            } else {
+                Destroy(previewObj);
             }
         }
     }
@@ -70,7 +84,7 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Debug.Log(IsValidLocation(hit));
-            if(IsValidLocation(hit))
+            if(IsValidLocation(hit) && canPlace)
             {
                 Debug.DrawLine(mainCam.transform.position, hit.point, Color.red);
                 Debug.DrawRay(mainCam.transform.position, mainCam.transform.position - hit.point, Color.green);
@@ -87,11 +101,11 @@ public class Player : MonoBehaviour
     {
         switch (selected)
         {
-            case Placeable.Tree:
+            case ePlaceable.Tree:
                 {
                     return (GameObject)Instantiate(tree);
                 }
-            case Placeable.House:
+            case ePlaceable.House:
                 {
                     return (GameObject)Instantiate(house);
                 }
@@ -105,18 +119,14 @@ public class Player : MonoBehaviour
 
     private bool IsValidLocation(RaycastHit hit)
     {
-        if (hit.transform.gameObject.CompareTag("Planet"))
-        {
-            return true;
-        }
-        else
-            return false;
+        return true;
     }
 
     private void UpdatePreviewObject()
     {
         Destroy(previewObj);
         previewObj = InstantiateSelected();
+        Physics.IgnoreCollision(previewObj.GetComponent<Collider>(), planet.GetComponent<Collider>());
         previewObj.GetComponent<MeshRenderer>().material = previewMaterial;
         previewObj.layer = 2;
     }
