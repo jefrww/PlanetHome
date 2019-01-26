@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject tree, house;
+    public GameObject tree, house, factory;
     public Material previewMaterial;
-    public enum ePlaceable { None, Tree, House };
+    public enum ePlaceable { None, Tree, House, Factory };
     public ePlaceable selected = ePlaceable.Tree;
 
     private Camera mainCam;
@@ -94,9 +94,6 @@ public class Player : MonoBehaviour
                 var placedObj = InstantiateSelected();
                 placedObj.transform.position = hit.point;
                 placedObj.transform.rotation = objRot;
-                //if(placedObj.tag == "Tree")placedObj.GetComponent<Tree>().Place();
-                //else if(placedObj.tag == "Tree")placedObj.GetComponent<Tree>().Place();
-                //else if(placedObj.tag == "Tree")placedObj.GetComponent<Tree>().Place();
                 switch (selected)
                 {
                     case ePlaceable.Tree:
@@ -107,6 +104,11 @@ public class Player : MonoBehaviour
                     case ePlaceable.House:
                     {
                         placedObj.GetComponent<Shelter>().Place();
+                        break;
+                    }
+                    case ePlaceable.Factory:
+                    {
+                        placedObj.GetComponent<Factory>().Place();
                         break;
                     }
                     default:
@@ -131,6 +133,10 @@ public class Player : MonoBehaviour
                 {
                     return (GameObject)Instantiate(house);
                 }
+            case ePlaceable.Factory:
+            {
+                return (GameObject)Instantiate(factory);
+            }
             default:
                 {
                     Debug.Log("Error: No valid Placeable selected!");

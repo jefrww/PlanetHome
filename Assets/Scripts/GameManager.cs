@@ -10,14 +10,18 @@ public class GameManager : MonoBehaviour
 
     public int population = 2;
     public int populationCap = 1024;
-    public int populationGrowthTime = 1;
+    public int populationGrowthTime = 5;
     public float populationGrowthRate = 1.2f;
     public int populationSpawnTime = 0;
+    public float income = 0.5f;
     public int pollution = 0;
     public int pollutionRate;
     public int credits = 0;
-    public int creditRate;
+    public int creditRate = 1;
+    public int creditTick = 1;
+    public int creditTimer = 0;
     public int power = 0;
+    public float powerPerCitizen = 1f;
     private bool changedPopulationCap = false, changedPollutionRate = false;
 
     private float elapsedTime = 0;
@@ -43,12 +47,19 @@ public class GameManager : MonoBehaviour
     {
         bool changedHudValue = false;
         elapsedTime += Time.deltaTime;
+        if (elapsedTime >= creditTimer)
+        {
+            creditTimer += creditTick;
+            UpdateCredits();
+            UpdatePollution();
+            changedHudValue = true;
+        }
         if (elapsedTime >= populationSpawnTime)
         {
             populationSpawnTime += populationGrowthTime;
-            Debug.Log("Updated Population at: " + Time.time);
             UpdatePopulation();
-            UpdatePollution();
+            UpdateCreditRate();
+            UpdatePower();
             changedHudValue = true;
         }
         if (changedPopulationCap)
@@ -66,6 +77,7 @@ public class GameManager : MonoBehaviour
         }
         
         if(changedHudValue) HUD.UpdateHUD(population, populationCap, pollution, credits, power);
+        selectBuilding();
 
     }
 
@@ -100,10 +112,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePopulation()
     {
-        Debug.Log(population);
-        Debug.Log(populationGrowthRate.ToString("0.00"));
         population += (int)(population * populationGrowthRate);
-        Debug.Log("Population increased to: " + population);
     }
 
     public void UpdatePopulationCap()
@@ -134,5 +143,58 @@ public class GameManager : MonoBehaviour
             positive += f.pollutionRate;
         }
         pollutionRate = negative + positive;
+    }
+
+    public void UpdateCreditRate()
+    {
+        if (population > populationCap)
+        {
+            creditRate = (int) (populationCap * income);
+        }
+        else
+        {
+            creditRate = (int) (population * income);
+        }
+    }
+
+    public void UpdatePower()
+    {
+        power = 0;
+        foreach (Factory f in factories)
+        {
+            power += f.powerRate;
+        }
+        if (population > populationCap)
+        {
+            power -= (int) (populationCap * powerPerCitizen);
+        }
+        else
+        {
+            power -= (int) (population * powerPerCitizen);
+        }
+    }
+
+    public void UpdateCredits()
+    {
+        credits += creditRate;
+    }
+    public void selectBuilding()
+    {
+        if (Input.GetKeyDown("q"))
+        {
+            player.selected = Player.ePlaceable.None;
+        }
+        if (Input.GetKeyDown("w"))
+        {
+            player.selected = Player.ePlaceable.Tree;
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            player.selected = Player.ePlaceable.House;
+        }
+        if (Input.GetKeyDown("r"))
+        {
+            player.selected = Player.ePlaceable.Factory;
+        }
     }
 }

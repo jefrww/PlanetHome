@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CanvasManager : MonoBehaviour
 {
 	private Text population, pollution, power, credits;
+	private Button buildTree;
 	// Use this for initialization
 	void Start()
 	{
@@ -31,9 +32,13 @@ public class CanvasManager : MonoBehaviour
 		GameObject powerField = new GameObject();
 		
 		populationField.transform.parent = UI.transform;
+		populationField.name = "populationField";
 		pollutionField.transform.parent = UI.transform;
+		pollutionField.name = "pollutionField";
 		creditsField.transform.parent = UI.transform;
+		creditsField.name = "creditsField";
 		powerField.transform.parent = UI.transform;
+		powerField.name = "powerField";
 		
 		populationField.AddComponent<Text>();
 		pollutionField.AddComponent<Text>();
@@ -84,11 +89,13 @@ public class CanvasManager : MonoBehaviour
 		pollutionTransform.sizeDelta = new Vector2(600, 200);
 		creditsTransform.sizeDelta = new Vector2(600, 200);
 		powerTransform.sizeDelta = new Vector2(600, 200);
+		
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+	{
+
 	}
 
 	public void UpdateHUD(int populationVal, int populationCapVal, int pollutionVal, int creditVal, int powerVal)
