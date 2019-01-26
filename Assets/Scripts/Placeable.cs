@@ -7,7 +7,12 @@ public class Placeable : MonoBehaviour {
     public int price;
     public int radius;
     public int collisions = 0;
-    
+
+    public void Place()
+    {
+	    Debug.Log("Used Default Place from Placeable.");
+	    return;
+    }
 	// Use this for initialization
 	void Start () {
 		

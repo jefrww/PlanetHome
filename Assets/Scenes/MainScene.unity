@@ -234,9 +234,76 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
+      propertyPath: m_TagString
+      value: Planet
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca92face7ca844aca8f855febb9746da, type: 3}
   m_IsPrefabAsset: 0
+--- !u!1 &383026086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 383026088}
+  - component: {fileID: 383026087}
+  - component: {fileID: 383026089}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &383026087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 383026086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf257d051a44648b0b77efe1e59f484e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HUD: {fileID: 0}
+  population: 5
+  populationCap: 1024
+  populationGrowthTime: 1
+  populationGrowthRate: 0.5
+  populationSpawnTime: 0
+  pollution: 0
+  pollutionRate: 0
+  credits: 0
+  creditRate: 0
+  power: 0
+--- !u!4 &383026088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 383026086}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.059904, y: 3.0996342, z: -9.483586}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &383026089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 383026086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2fc83c2bed74e4b91e622729c56861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +394,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 1646174067933246, guid: d93afd3d2465142279569927dc3ad7a8, type: 2}
+  house: {fileID: 1452338434423438, guid: a9fb0d75764ea4e759b10389a25a936e, type: 2}
+  previewMaterial: {fileID: 2100000, guid: fac0858d55a0f4dfaac170da079ec637, type: 2}
+  selected: 1
 --- !u!1 &1016474561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: ca92face7ca844aca8f855febb9746da,

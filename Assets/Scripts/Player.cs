@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject tree, house;
+    public GameObject tree, house, factory;
     public Material previewMaterial;
-    public enum ePlaceable { None, Tree, House };
+    public enum ePlaceable { None, Tree, House, Factory };
     public ePlaceable selected = ePlaceable.Tree;
 
     private Camera mainCam;
@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GameManager.Instance.AddPlayer(this);
         mainCam = Camera.main;
         planet = GameObject.FindWithTag("Planet");
     }
@@ -93,6 +94,29 @@ public class Player : MonoBehaviour
                 var placedObj = InstantiateSelected();
                 placedObj.transform.position = hit.point;
                 placedObj.transform.rotation = objRot;
+                switch (selected)
+                {
+                    case ePlaceable.Tree:
+                    {
+                        placedObj.GetComponent<Tree>().Place();
+                        break;
+                    }
+                    case ePlaceable.House:
+                    {
+                        placedObj.GetComponent<Shelter>().Place();
+                        break;
+                    }
+                    case ePlaceable.Factory:
+                    {
+                        placedObj.GetComponent<Factory>().Place();
+                        break;
+                    }
+                    default:
+                    {
+                        Debug.Log("Error: No valid Placeable selected!");
+                        break;
+                    }
+                }
             }
         }
     }
@@ -109,6 +133,10 @@ public class Player : MonoBehaviour
                 {
                     return (GameObject)Instantiate(house);
                 }
+            case ePlaceable.Factory:
+            {
+                return (GameObject)Instantiate(factory);
+            }
             default:
                 {
                     Debug.Log("Error: No valid Placeable selected!");

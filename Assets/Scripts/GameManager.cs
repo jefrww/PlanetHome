@@ -5,19 +5,26 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private CanvasManager HUD;
+    private Player player;
 
     public int population = 2;
     public int populationCap = 1024;
-    public int populationGrowthTime = 1;
+    public int populationGrowthTime = 5;
     public float populationGrowthRate = 1.2f;
     public int populationSpawnTime = 0;
-    public int pollution;
+    public float income = 0.5f;
+    public int pollution = 0;
     public int pollutionRate;
-    public int credits;
-    public int creditRate;
-    public int power;
+    public int credits = 0;
+    public int creditRate = 1;
+    public int creditTick = 1;
+    public int creditTimer = 0;
+    public int power = 0;
+    public float powerPerCitizen = 1f;
     private bool changedPopulationCap = false, changedPollutionRate = false;
 
+    private float elapsedTime = 0;
     private List<Shelter> shelters;
     private List<Tree> trees;
     private List<Factory> factories;
@@ -38,23 +45,39 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= populationSpawnTime)
+        bool changedHudValue = false;
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime >= creditTimer)
+        {
+            creditTimer += creditTick;
+            UpdateCredits();
+            UpdatePollution();
+            changedHudValue = true;
+        }
+        if (elapsedTime >= populationSpawnTime)
         {
             populationSpawnTime += populationGrowthTime;
-            Debug.Log("Updated Population at: " + Time.time);
             UpdatePopulation();
+            UpdateCreditRate();
+            UpdatePower();
+            changedHudValue = true;
         }
         if (changedPopulationCap)
         {
             UpdatePopulationCap();
             changedPopulationCap = false;
+            changedHudValue = true;
         }
 
         if (changedPollutionRate)
         {
             UpdatePollutionRate();
             changedPollutionRate = false;
+            changedHudValue = true;
         }
+        
+        if(changedHudValue) HUD.UpdateHUD(population, populationCap, pollution, credits, power);
+        selectBuilding();
 
     }
 
@@ -66,6 +89,7 @@ public class GameManager : MonoBehaviour
 
     public void AddTree(Tree tree)
     {
+        Debug.Log("Added Tree to Tree-List.");
         trees.Add(tree);
         changedPollutionRate = true;
     }
@@ -76,12 +100,19 @@ public class GameManager : MonoBehaviour
         changedPollutionRate = true;
     }
 
+    public void AddCanvas(CanvasManager canvas)
+    {
+        this.HUD = canvas;
+    }
+
+    public void AddPlayer(Player player)
+    {
+        this.player = player;
+    }
+
     public void UpdatePopulation()
     {
-        Debug.Log(population);
-        Debug.Log(populationGrowthRate.ToString("0.00"));
         population += (int)(population * populationGrowthRate);
-        Debug.Log("Population increased to: " + population);
     }
 
     public void UpdatePopulationCap()
@@ -97,6 +128,8 @@ public class GameManager : MonoBehaviour
     public void UpdatePollution()
     {
         pollution += pollutionRate;
+        if (pollution < 0) pollution = 0;
+
     }
 
     public void UpdatePollutionRate()
@@ -112,5 +145,63 @@ public class GameManager : MonoBehaviour
             positive += f.pollutionRate;
         }
         pollutionRate = negative + positive;
+    }
+
+    public void UpdateCreditRate()
+    {
+        if (population > populationCap)
+        {
+            creditRate = (int) ((populationCap-population) * income);
+        }
+        else
+        {
+            creditRate = (int) (population * income);
+        }
+    }
+
+    public void UpdatePower()
+    {
+        power = 0;
+        foreach (Factory f in factories)
+        {
+            power += f.powerRate;
+        }
+        if (population > populationCap)
+        {
+            power -= (int) (populationCap * powerPerCitizen);
+        }
+        else
+        {
+            power -= (int) (population * powerPerCitizen);
+        }
+    }
+
+    public void UpdateCredits()
+    {
+        credits += creditRate;
+    }
+
+    public void BuyBuilding(int price)
+    {
+        credits -= price;
+    }
+    public void selectBuilding()
+    {
+        if (Input.GetKeyDown("q"))
+        {
+            player.selected = Player.ePlaceable.None;
+        }
+        if (Input.GetKeyDown("w"))
+        {
+            player.selected = Player.ePlaceable.Tree;
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            player.selected = Player.ePlaceable.House;
+        }
+        if (Input.GetKeyDown("r"))
+        {
+            player.selected = Player.ePlaceable.Factory;
+        }
     }
 }
