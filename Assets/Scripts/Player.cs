@@ -7,24 +7,23 @@ public class Player : MonoBehaviour
     public GameObject tree, house, factory;
     public Material previewMaterial;
     public enum ePlaceable { None, Tree, House, Factory };
-    public ePlaceable selected = ePlaceable.Tree;
 
     private Camera mainCam;
     private GameObject planet;
     private GameObject previewObj;
-    private bool canPlace = true;
+    private bool canPlace;
     private Color green = new Color(0, 1, 0, .5f);
     private Color red = new Color(1, 0, 0, .5f);
+    private ePlaceable selected = ePlaceable.None;
 
-    // Use this for initialization
     void Start()
     {
         GameManager.Instance.AddPlayer(this);
         mainCam = Camera.main;
         planet = GameObject.FindWithTag("Planet");
+        previewMaterial.color = red;
     }
 
-    // Update is called once per frame
     void Update()
     {
         PreviewPlacement();
@@ -40,13 +39,19 @@ public class Player : MonoBehaviour
         UpdatePreviewObject();
     }
 
+    public void SetSelected(ePlaceable select)
+    {
+        selected = select;
+        UpdatePreviewObject();
+    }
+
     private void PreviewPlacement()
     {
         if (selected == ePlaceable.None && previewObj != null)
         {
             Destroy(previewObj);
         }
-        else
+        else if (selected != ePlaceable.None)
         {
             if (previewObj == null)
             {
@@ -58,20 +63,23 @@ public class Player : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (IsValidLocation(hit))
+                if (previewObj.GetComponent<Placeable>().collisions == 0)
                 {
-                    if (previewObj.GetComponent<Placeable>().collisions == 0) {
-                        previewMaterial.color = green;
-                        canPlace = true;
-                    } else {
-                        previewMaterial.color = red;
-                        canPlace = false;
-                    }
-                    var objRot = Quaternion.LookRotation(hit.normal);
-                    previewObj.transform.position = hit.point;
-                    previewObj.transform.rotation = objRot;
+                    previewMaterial.color = green;
+                    canPlace = true;
                 }
-            } else {
+                else
+                {
+                    previewMaterial.color = red;
+                    canPlace = false;
+                }
+                var objRot = Quaternion.LookRotation(hit.normal);
+                previewObj.transform.position = hit.point;
+                previewObj.transform.rotation = objRot;
+
+            }
+            else
+            {
                 Destroy(previewObj);
             }
         }
@@ -84,8 +92,7 @@ public class Player : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log(IsValidLocation(hit));
-            if(IsValidLocation(hit) && canPlace)
+            if (canPlace && selected != ePlaceable.None)
             {
                 Debug.DrawLine(mainCam.transform.position, hit.point, Color.red);
                 Debug.DrawRay(mainCam.transform.position, mainCam.transform.position - hit.point, Color.green);
@@ -94,28 +101,29 @@ public class Player : MonoBehaviour
                 var placedObj = InstantiateSelected();
                 placedObj.transform.position = hit.point;
                 placedObj.transform.rotation = objRot;
+                placedObj.transform.parent = planet.transform;
                 switch (selected)
                 {
                     case ePlaceable.Tree:
-                    {
-                        placedObj.GetComponent<Tree>().Place();
-                        break;
-                    }
+                        {
+                            placedObj.GetComponent<Tree>().Place();
+                            break;
+                        }
                     case ePlaceable.House:
-                    {
-                        placedObj.GetComponent<Shelter>().Place();
-                        break;
-                    }
+                        {
+                            placedObj.GetComponent<Shelter>().Place();
+                            break;
+                        }
                     case ePlaceable.Factory:
-                    {
-                        placedObj.GetComponent<Factory>().Place();
-                        break;
-                    }
+                        {
+                            placedObj.GetComponent<Factory>().Place();
+                            break;
+                        }
                     default:
-                    {
-                        Debug.Log("Error: No valid Placeable selected!");
-                        break;
-                    }
+                        {
+                            Debug.Log("Error: No valid Placeable selected!");
+                            break;
+                        }
                 }
             }
         }
@@ -134,9 +142,9 @@ public class Player : MonoBehaviour
                     return (GameObject)Instantiate(house);
                 }
             case ePlaceable.Factory:
-            {
-                return (GameObject)Instantiate(factory);
-            }
+                {
+                    return (GameObject)Instantiate(factory);
+                }
             default:
                 {
                     Debug.Log("Error: No valid Placeable selected!");
@@ -153,10 +161,13 @@ public class Player : MonoBehaviour
     private void UpdatePreviewObject()
     {
         Destroy(previewObj);
-        previewObj = InstantiateSelected();
-        Physics.IgnoreCollision(previewObj.GetComponent<Collider>(), planet.GetComponent<Collider>());
-        previewObj.GetComponent<MeshRenderer>().material = previewMaterial;
-        previewObj.layer = 2;
+        if (selected != ePlaceable.None)
+        {
+            previewObj = InstantiateSelected();
+            Physics.IgnoreCollision(previewObj.GetComponent<Collider>(), planet.GetComponent<Collider>());
+            previewObj.GetComponent<MeshRenderer>().material = previewMaterial;
+            previewObj.layer = 2;
+        }
     }
 
 }
