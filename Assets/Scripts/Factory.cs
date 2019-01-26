@@ -7,7 +7,7 @@ public class Factory : Placeable
 	public int powerRate;
 	public int pollutionRate;
 	
-	void Awake()
+	public void Place()
 	{
 		GameManager.Instance.AddFactory(this);
 	}

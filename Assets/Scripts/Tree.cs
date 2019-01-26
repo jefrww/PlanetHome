@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tree : Placeable
 {
 	public int pollutionRate;
-	void Awake()
+	public void Place()
 	{
 		GameManager.Instance.AddTree(this);
 	}
