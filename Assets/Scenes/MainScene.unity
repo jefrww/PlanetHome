@@ -269,17 +269,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf257d051a44648b0b77efe1e59f484e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HUD: {fileID: 0}
   population: 5
-  populationCap: 1024
-  populationGrowthTime: 1
-  populationGrowthRate: 0.5
+  populationCap: 0
+  populationGrowthTime: 5
+  populationGrowthRate: 0.2
   populationSpawnTime: 0
+  income: 0.5
   pollution: 0
   pollutionRate: 0
   credits: 0
   creditRate: 0
+  creditTick: 1
+  creditTimer: 0
   power: 0
+  powerPerCitizen: 1
 --- !u!4 &383026088
 Transform:
   m_ObjectHideFlags: 0
@@ -395,8 +398,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tree: {fileID: 1646174067933246, guid: d93afd3d2465142279569927dc3ad7a8, type: 2}
   house: {fileID: 1452338434423438, guid: a9fb0d75764ea4e759b10389a25a936e, type: 2}
+  factory: {fileID: 1294953252269424, guid: 43a543fd6b3a845298d400e61c6924d0, type: 2}
   previewMaterial: {fileID: 2100000, guid: fac0858d55a0f4dfaac170da079ec637, type: 2}
-  selected: 1
+  selected: 2
 --- !u!1 &1016474561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: ca92face7ca844aca8f855febb9746da,

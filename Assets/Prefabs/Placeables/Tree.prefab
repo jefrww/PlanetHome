@@ -21,11 +21,11 @@ GameObject:
   - component: {fileID: 4849228300842490}
   - component: {fileID: 33126415407700586}
   - component: {fileID: 23299230843577986}
-  - component: {fileID: 114139181930185566}
   - component: {fileID: 136156147207505840}
+  - component: {fileID: 114422656102327008}
   m_Layer: 0
   m_Name: Tree
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646174067933246}
   m_Mesh: {fileID: 4300000, guid: 7237906e945294dbcabea394f66df198, type: 3}
---- !u!114 &114139181930185566
+--- !u!114 &114422656102327008
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,9 +93,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1646174067933246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d0bf0be3ea7642f18b23efed506e70a, type: 3}
+  m_Script: {fileID: 11500000, guid: b9544d2806cd949ab9e7e2da54e6484c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 10
+  radius: 0
+  collisions: 0
+  pollutionRate: -1
 --- !u!136 &136156147207505840
 CapsuleCollider:
   m_ObjectHideFlags: 1

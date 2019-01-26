@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dcfdabaf-f227-479d-8261-edaff503c5c9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Factory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Factory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shelter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Shelter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tree.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Tree.cs" afterDir="false" />
-    </list>
+    <list default="true" id="dcfdabaf-f227-479d-8261-edaff503c5c9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,12 +253,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548477478872</updated>
-      <workItem from="1548477483348" duration="18502000" />
+      <workItem from="1548477483348" duration="18662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18502000" />
+    <option name="totallyTimeSpent" value="18662000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
