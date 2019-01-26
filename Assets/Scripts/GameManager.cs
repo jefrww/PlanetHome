@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public int power;
     private bool changedPopulationCap = false, changedPollutionRate = false;
 
+    private float elapsedTime = 0;
     private List<Shelter> shelters;
     private List<Tree> trees;
     private List<Factory> factories;
@@ -38,7 +39,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= populationSpawnTime)
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime >= populationSpawnTime)
         {
             populationSpawnTime += populationGrowthTime;
             Debug.Log("Updated Population at: " + Time.time);
