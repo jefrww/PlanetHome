@@ -127,4 +127,4 @@ MonoBehaviour:
   price: 0
   radius: 0
   collisions: 0
-  capacity: 0
+  capacity: 16

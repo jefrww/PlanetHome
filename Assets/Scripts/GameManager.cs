@@ -189,19 +189,19 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown("q"))
         {
-            player.selected = Player.ePlaceable.None;
+            player.SetSelected(Player.ePlaceable.None);
         }
         if (Input.GetKeyDown("w"))
         {
-            player.selected = Player.ePlaceable.Tree;
+            player.SetSelected(Player.ePlaceable.Tree);
         }
         if (Input.GetKeyDown("e"))
         {
-            player.selected = Player.ePlaceable.House;
+            player.SetSelected(Player.ePlaceable.House);
         }
         if (Input.GetKeyDown("r"))
         {
-            player.selected = Player.ePlaceable.Factory;
+            player.SetSelected(Player.ePlaceable.Factory);
         }
     }
 }

@@ -8,7 +8,7 @@ public class Placeable : MonoBehaviour {
     public int radius;
     public int collisions = 0;
 
-    public void Place()
+    public virtual void Place()
     {
 	    Debug.Log("Used Default Place from Placeable.");
 	    return;
@@ -22,6 +22,8 @@ public class Placeable : MonoBehaviour {
 	void Update () {
 		
 	}
+
+
 
     private void OnCollisionEnter(Collision col)
     {
