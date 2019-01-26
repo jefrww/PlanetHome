@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shelter : Placeable {
+public class Shelter : Placeable
+{
 
-    public virtual int Capacity { 
-        get;
-        protected set;
+    public int capacity;
+    // Use this for initialization
+    public void Place()
+    {
+        GameManager.Instance.AddShelter(this);
+    }
+    void Start()
+    {
+
     }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Placeable : MonoBehaviour {
 
+    public int price;
+    public int radius;
     public int collisions = 0;
     
 	// Use this for initialization
@@ -18,7 +20,6 @@ public class Placeable : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col)
     {
-        Debug.Log("COLLISION");
         collisions ++;
     }
     private void OnCollisionExit(Collision col)
