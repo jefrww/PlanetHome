@@ -278,10 +278,10 @@
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>/Users/ripe8968/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>/Users/nibl8872/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>/Users/ripe8968/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+      <HintPath>/Users/nibl8872/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
@@ -312,6 +312,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="UnityEditor.StandardEvents.csproj">
+      <Project>{6800202F-4402-D405-F8CB-03DC7BD78B92}</Project>
+      <Name>UnityEditor.StandardEvents</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
       <Project>{3A848AB7-9891-EDDA-D555-BF184C2F81F4}</Project>
       <Name>Unity.TextMeshPro.Editor</Name>
@@ -323,10 +327,6 @@
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{07A21C90-D344-AE1A-8456-9910C203B41A}</Project>
       <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEditor.StandardEvents.csproj">
-      <Project>{6800202F-4402-D405-F8CB-03DC7BD78B92}</Project>
-      <Name>UnityEditor.StandardEvents</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
