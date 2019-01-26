@@ -5,17 +5,19 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private CanvasManager HUD;
+    private Player player;
 
     public int population = 2;
     public int populationCap = 1024;
     public int populationGrowthTime = 1;
     public float populationGrowthRate = 1.2f;
     public int populationSpawnTime = 0;
-    public int pollution;
+    public int pollution = 0;
     public int pollutionRate;
-    public int credits;
+    public int credits = 0;
     public int creditRate;
-    public int power;
+    public int power = 0;
     private bool changedPopulationCap = false, changedPollutionRate = false;
 
     private float elapsedTime = 0;
@@ -39,24 +41,31 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool changedHudValue = false;
         elapsedTime += Time.deltaTime;
         if (elapsedTime >= populationSpawnTime)
         {
             populationSpawnTime += populationGrowthTime;
             Debug.Log("Updated Population at: " + Time.time);
             UpdatePopulation();
+            UpdatePollution();
+            changedHudValue = true;
         }
         if (changedPopulationCap)
         {
             UpdatePopulationCap();
             changedPopulationCap = false;
+            changedHudValue = true;
         }
 
         if (changedPollutionRate)
         {
             UpdatePollutionRate();
             changedPollutionRate = false;
+            changedHudValue = true;
         }
+        
+        if(changedHudValue) HUD.UpdateHUD(population, populationCap, pollution, credits, power);
 
     }
 
@@ -68,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void AddTree(Tree tree)
     {
+        Debug.Log("Added Tree to Tree-List.");
         trees.Add(tree);
         changedPollutionRate = true;
     }
@@ -76,6 +86,16 @@ public class GameManager : MonoBehaviour
     {
         factories.Add(factory);
         changedPollutionRate = true;
+    }
+
+    public void AddCanvas(CanvasManager canvas)
+    {
+        this.HUD = canvas;
+    }
+
+    public void AddPlayer(Player player)
+    {
+        this.player = player;
     }
 
     public void UpdatePopulation()

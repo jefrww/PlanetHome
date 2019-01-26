@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GameManager.Instance.AddPlayer(this);
         mainCam = Camera.main;
         planet = GameObject.FindWithTag("Planet");
     }
@@ -93,6 +94,27 @@ public class Player : MonoBehaviour
                 var placedObj = InstantiateSelected();
                 placedObj.transform.position = hit.point;
                 placedObj.transform.rotation = objRot;
+                //if(placedObj.tag == "Tree")placedObj.GetComponent<Tree>().Place();
+                //else if(placedObj.tag == "Tree")placedObj.GetComponent<Tree>().Place();
+                //else if(placedObj.tag == "Tree")placedObj.GetComponent<Tree>().Place();
+                switch (selected)
+                {
+                    case ePlaceable.Tree:
+                    {
+                        placedObj.GetComponent<Tree>().Place();
+                        break;
+                    }
+                    case ePlaceable.House:
+                    {
+                        placedObj.GetComponent<Shelter>().Place();
+                        break;
+                    }
+                    default:
+                    {
+                        Debug.Log("Error: No valid Placeable selected!");
+                        break;
+                    }
+                }
             }
         }
     }
