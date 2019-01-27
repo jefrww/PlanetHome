@@ -133,6 +133,13 @@ public class Player : MonoBehaviour
                 Debug.DrawRay(mainCam.transform.position, mainCam.transform.position - hit.point, Color.green);
 
                 var objRot = Quaternion.LookRotation(hit.normal);
+                if (selected == ePlaceable.Tree)
+                {
+                    Debug.Log("ROT TREE");
+                    var rot = Vector3.forward;
+                    rot *= Random.Range(0, 360);
+                    objRot *= Quaternion.Euler(rot);
+                }
                 var placedObj = InstantiateSelected();
                 placedObj.transform.position = hit.point;
                 placedObj.transform.rotation = objRot;

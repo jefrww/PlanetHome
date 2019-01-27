@@ -229,19 +229,19 @@ public class GameManager : MonoBehaviour
         {
             player.SetSelected(Player.ePlaceable.None);
         }
-        if (Input.GetKeyDown("w"))
+        if (Input.GetKeyDown("t"))
         {
             player.SetSelected(Player.ePlaceable.Tree);
         }
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("w"))
         {
             player.SetSelected(Player.ePlaceable.House);
         }
-        if (Input.GetKeyDown("r"))
+        if (Input.GetKeyDown("e"))
         {
             player.SetSelected(Player.ePlaceable.Skyscraper);
         }
-        if (Input.GetKeyDown("t"))
+        if (Input.GetKeyDown("r"))
         {
             player.SetSelected(Player.ePlaceable.Factory);
         }
