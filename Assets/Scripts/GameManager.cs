@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private bool hardStop = false;
 
     public int population = 2;
-    public int populationCap = 0;
+    public int populationCap = 8;
     public int populationGrowthTime = 5;
     //public float populationGrowthRate = 1.2f;
     public int populationSpawnTime = 0;
@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public int tickTimer = 0;
     public int power = 0;
     public float powerPerCitizen = 1f;
+    public Shelter startHouse;
     private bool changedPopulationCap = false, changedPollutionRate = false;
     public int year = 1960;
 
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         shelters = new List<Shelter>();
         trees = new List<Tree>();
         factories = new List<Factory>();
+        AddShelter(startHouse);
         DontDestroyOnLoad(this);
     }
     // Use this for initialization

@@ -872,7 +872,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 8
+  m_text: 32
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2aa856087f0c114394687babe8f4d9f, type: 2}
   m_sharedMaterial: {fileID: 21582737888559600, guid: c2aa856087f0c114394687babe8f4d9f,
@@ -941,7 +941,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0.000000629657, w: 0}
   m_textInfo:
     textComponent: {fileID: 481184843}
-    characterCount: 1
+    characterCount: 2
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -2318,6 +2318,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: ca92face7ca844aca8f855febb9746da,
     type: 3}
   m_PrefabInternal: {fileID: 255012714}
+--- !u!4 &1016474564 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: ca92face7ca844aca8f855febb9746da,
+    type: 3}
+  m_PrefabInternal: {fileID: 255012714}
 --- !u!135 &1016474565
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3001,7 +3006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   population: 2
-  populationCap: 0
+  populationCap: 8
   populationGrowthTime: 5
   populationSpawnTime: 0
   income: 0.2
@@ -3013,6 +3018,8 @@ MonoBehaviour:
   tickTimer: 0
   power: 1000
   powerPerCitizen: 1
+  startHouse: {fileID: 114577447575379780, guid: 6592bcf5885b14b0f815139725a6d0c3,
+    type: 2}
   year: 1960
 --- !u!4 &1628522731
 Transform:
@@ -3467,6 +3474,126 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1773441998}
   m_CullTransparentMesh: 0
+--- !u!1 &1836489180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1836489181}
+  - component: {fileID: 1836489186}
+  - component: {fileID: 1836489185}
+  - component: {fileID: 1836489184}
+  - component: {fileID: 1836489183}
+  - component: {fileID: 1836489182}
+  m_Layer: 2
+  m_Name: House(Default)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1836489181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836489180}
+  m_LocalRotation: {x: 0.13350436, y: 0.8664482, z: 0.34501615, w: -0.33527306}
+  m_LocalPosition: {x: -0.04188861, y: 0.05889925, z: -0.046022072}
+  m_LocalScale: {x: 0.40000066, y: 0.4, z: 0.4000006}
+  m_Children: []
+  m_Father: {fileID: 1016474564}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1836489182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836489180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20706d5d9cbe41bbba965255f755e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  price: 50
+  radius: 0
+  collisions: 0
+  capacity: 8
+--- !u!54 &1836489183
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836489180}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1836489184
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836489180}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.022644851, y: 0.033152528, z: 0.019743606}
+  m_Center: {x: -0.00006277999, y: -0.00045507879, z: 0.0094483355}
+--- !u!23 &1836489185
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836489180}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 892bf99eec2cd4ff28ad117451e26982, type: 2}
+  - {fileID: 2100000, guid: 4b1de2c0a373b442eb192c0e32f470a2, type: 2}
+  - {fileID: 2100000, guid: 636c1021ac39d48348747a7485a602b3, type: 2}
+  - {fileID: 2100000, guid: ace4c9adbeadc4594976fc222468379e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1836489186
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836489180}
+  m_Mesh: {fileID: 4300000, guid: 198014d40ec9d4c718db13d2390c68ca, type: 3}
 --- !u!1 &1868537369
 GameObject:
   m_ObjectHideFlags: 0
@@ -3645,7 +3772,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 50
+  m_text: 150
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2aa856087f0c114394687babe8f4d9f, type: 2}
   m_sharedMaterial: {fileID: 21582737888559600, guid: c2aa856087f0c114394687babe8f4d9f,
@@ -3714,7 +3841,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -29.403303, w: 0}
   m_textInfo:
     textComponent: {fileID: 1884119455}
-    characterCount: 2
+    characterCount: 3
     spriteCount: 0
     spaceCount: 0
     wordCount: 1

@@ -7,9 +7,12 @@ ModelImporter:
     400000: //RootNode
     2100000: leafs.001
     2100002: bark.001
+    2100004: leafs
+    2100006: bark
     2300000: //RootNode
     3300000: //RootNode
     4300000: Icosphere.006
+    4300002: Icosphere.001
   externalObjects: {}
   materials:
     importMaterials: 1

@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameOver : MonoBehaviour {
 
-    private Text score;
+    public TextMeshProUGUI score;
     private string scoreTxt;
 
 	void Start () {
         scoreTxt = "– " + GameManager.Instance.year.ToString() + " –";
-        score = GetComponent<Text>();
         score.text = scoreTxt;
 
 	}
