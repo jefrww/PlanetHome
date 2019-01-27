@@ -16,8 +16,11 @@ public class Player : MonoBehaviour
     private Color red = new Color(1, 0, 0, .5f);
     private ePlaceable selected = ePlaceable.None;
 
+    private SFX sound;
+
     void Start()
     {
+        sound = this.transform.GetComponent<SFX>();
         GameManager.Instance.AddPlayer(this);
         mainCam = Camera.main;
         planet = GameObject.FindWithTag("Planet");
@@ -136,21 +139,25 @@ public class Player : MonoBehaviour
                 {
                     case ePlaceable.Tree:
                         {
+                            sound.PlayTree();
                             placedObj.GetComponent<Tree>().Place();
                             break;
                         }
                     case ePlaceable.House:
                         {
+                            sound.PlayHouse();
                             placedObj.GetComponent<Shelter>().Place();
                             break;
                         }
                     case ePlaceable.Skyscraper:
                         {
+                            sound.PlayHouse();
                             placedObj.GetComponent<Shelter>().Place();
                             break;
                         }
                     case ePlaceable.Factory:
                         {
+                            sound.PlayFactory();
                             placedObj.GetComponent<Factory>().Place();
                             break;
                         }
