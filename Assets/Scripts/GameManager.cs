@@ -18,11 +18,12 @@ public class GameManager : MonoBehaviour
     public int pollutionRate;
     public int credits = 0;
     public int creditRate = 1;
-    public int creditTick = 1;
-    public int creditTimer = 0;
+    public int tick = 1;
+    public int tickTimer = 0;
     public int power = 0;
     public float powerPerCitizen = 1f;
     private bool changedPopulationCap = false, changedPollutionRate = false;
+    public int year = 1960;
 
     private float elapsedTime = 0;
     private List<Shelter> shelters;
@@ -47,11 +48,13 @@ public class GameManager : MonoBehaviour
     {
         bool changedHudValue = false;
         elapsedTime += Time.deltaTime;
-        if (elapsedTime >= creditTimer)
+        if (elapsedTime >= tickTimer)
         {
-            creditTimer += creditTick;
+            tickTimer += tick;
             UpdateCredits();
+            UpdatePollutionRate();
             UpdatePollution();
+            UpdatePower();
             changedHudValue = true;
         }
         if (elapsedTime >= populationSpawnTime)
@@ -59,7 +62,6 @@ public class GameManager : MonoBehaviour
             populationSpawnTime += populationGrowthTime;
             UpdatePopulation();
             UpdateCreditRate();
-            UpdatePower();
             changedHudValue = true;
         }
         if (changedPopulationCap)
@@ -68,17 +70,8 @@ public class GameManager : MonoBehaviour
             changedPopulationCap = false;
             changedHudValue = true;
         }
-
-        if (changedPollutionRate)
-        {
-            UpdatePollutionRate();
-            changedPollutionRate = false;
-            changedHudValue = true;
-        }
-        
-        if(changedHudValue) HUD.UpdateHUD(population, populationCap, pollution, credits, power);
+        if (changedHudValue) HUD.UpdateHUD(population, populationCap, pollution, credits, power, year);
         selectBuilding();
-
     }
 
     public void AddShelter(Shelter shelter)
@@ -112,9 +105,17 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePopulation()
     {
-        population += (int)(population * populationGrowthRate);
+        if (populationCap - population > 10)
+        {
+            population += 4;
+        }
+        else
+        {
+            population += 2; //= (int)System.Math.Ceiling(population*populationGrowthRate);
+        }
+        year++;
+        //population+= 2; //= (int)System.Math.Ceiling(population*populationGrowthRate);
     }
-
     public void UpdatePopulationCap()
     {
         int cap = 0;
@@ -128,22 +129,22 @@ public class GameManager : MonoBehaviour
     public void UpdatePollution()
     {
         pollution += pollutionRate;
-        if (pollution < 0) pollution = 0;
-
+        //if (pollution < 0) pollution = 0;
     }
 
     public void UpdatePollutionRate()
     {
         int negative = 0, positive = 0;
-        foreach (Tree t in trees)
+        /*foreach (Tree t in trees)
         {
             negative += t.pollutionRate;
-        }
-
+        }*/
+        negative = (int)(System.Math.Log(trees.Count + 1) * -10);
         foreach (Factory f in factories)
         {
             positive += f.pollutionRate;
         }
+        positive += (int)System.Math.Ceiling(population * population * 0.002f);
         pollutionRate = negative + positive;
     }
 
@@ -151,11 +152,11 @@ public class GameManager : MonoBehaviour
     {
         if (population > populationCap)
         {
-            creditRate = (int) ((populationCap-population) * income);
+            creditRate = (int)(populationCap * income);
         }
         else
         {
-            creditRate = (int) (population * income);
+            creditRate = (int)(population * income);
         }
     }
 
@@ -168,11 +169,11 @@ public class GameManager : MonoBehaviour
         }
         if (population > populationCap)
         {
-            power -= (int) (populationCap * powerPerCitizen);
+            power -= (int)(populationCap * powerPerCitizen);
         }
         else
         {
-            power -= (int) (population * powerPerCitizen);
+            power -= (int)(population * powerPerCitizen);
         }
     }
 
