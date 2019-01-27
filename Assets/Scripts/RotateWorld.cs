@@ -24,7 +24,6 @@ public class RotateWorld : MonoBehaviour
     {
         float h = horizontalSpeed * Input.GetAxis("Mouse X");
         float v = verticalSpeed * Input.GetAxis("Mouse Y");
-        Debug.Log(h);
 
         if (Input.GetMouseButton(1))
         {
@@ -36,7 +35,6 @@ public class RotateWorld : MonoBehaviour
                 {
                     isRotating = true;
                     transform.Rotate(new Vector3(v, -h, 0), Space.World);
-
                 }
             }
             else
@@ -47,9 +45,7 @@ public class RotateWorld : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             isRotating = false;
-
         }
-
 
     }
 }

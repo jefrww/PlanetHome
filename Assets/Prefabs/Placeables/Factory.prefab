@@ -131,4 +131,4 @@ MonoBehaviour:
   radius: 0
   collisions: 0
   powerRate: 20
-  pollutionRate: 0
+  pollutionRate: 2
