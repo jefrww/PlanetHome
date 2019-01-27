@@ -127,7 +127,6 @@ public class Player : MonoBehaviour
                 Debug.DrawLine(mainCam.transform.position, hit.point, Color.red);
                 Debug.DrawRay(mainCam.transform.position, mainCam.transform.position - hit.point, Color.green);
 
-                GameManager.Instance.credits -= GetCost(selected);
                 var objRot = Quaternion.LookRotation(hit.normal);
                 var placedObj = InstantiateSelected();
                 placedObj.transform.position = hit.point;
