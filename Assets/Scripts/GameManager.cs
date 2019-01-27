@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             changedPopulationCap = false;
             changedHudValue = true;
         }
-        if (changedHudValue) HUD.UpdateHUD(population, populationCap, pollution, credits, power, year);
+        //if (changedHudValue) HUD.UpdateHUD(population, populationCap, pollution, credits, power, year);
         selectBuilding();
         if (GameIsOver()) SceneManager.LoadScene("StartWindow");
     }
