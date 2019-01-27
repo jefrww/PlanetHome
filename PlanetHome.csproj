@@ -335,8 +335,10 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Placeable.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\QuitOnClick.cs" />
     <Compile Include="Assets\Scripts\RotateWorld.cs" />
     <Compile Include="Assets\Scripts\Shelter.cs" />
+    <Compile Include="Assets\Scripts\StartApplication.cs" />
     <Compile Include="Assets\Scripts\Tree.cs" />
   </ItemGroup>
   <ItemGroup>
