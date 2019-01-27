@@ -342,7 +342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7230f27dad84426bf370a698c97947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 1545593877246334, guid: 485883308a530c3479c6f4827e0564c3, type: 2}
+  tree1: {fileID: 1545593877246334, guid: 485883308a530c3479c6f4827e0564c3, type: 2}
+  tree2: {fileID: 1803639629067216, guid: 0954283201243044083307cc19bfe24e, type: 2}
   house: {fileID: 1007156947994880, guid: 6592bcf5885b14b0f815139725a6d0c3, type: 2}
   skyscraper: {fileID: 1743490802049272, guid: a20d98d8ce568a44b9a96de2d4e615c7, type: 2}
   factory: {fileID: 1878167587935962, guid: 3a2f488f5c4fb3d4ebac8c49ccb86ee3, type: 2}
@@ -406,18 +407,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   population: 2
-  populationCap: 1024
+  populationCap: 0
   populationGrowthTime: 5
-  populationGrowthRate: 0.5
   populationSpawnTime: 0
-  income: 0.5
+  income: 0.2
   pollution: 0
   pollutionRate: 0
-  credits: 0
+  credits: 300
   creditRate: 1
   tick: 1
   tickTimer: 0
-  power: 0
+  power: 1000
   powerPerCitizen: 1
   year: 1960
 --- !u!4 &1628522731
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1628522729}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a2fc83c2bed74e4b91e622729c56861, type: 3}
   m_Name: 

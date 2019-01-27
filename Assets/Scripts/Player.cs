@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject tree, house, skyscraper, factory;
+    public GameObject tree1, tree2, house, skyscraper, factory;
     public Material previewMaterial;
     public enum ePlaceable { None, Tree, House, Factory, Skyscraper };
 
@@ -15,9 +15,11 @@ public class Player : MonoBehaviour
     private Color green = new Color(0, 1, 0, .5f);
     private Color red = new Color(1, 0, 0, .5f);
     private ePlaceable selected = ePlaceable.None;
+    private System.Random rng;
 
     void Start()
     {
+        rng = new System.Random();
         GameManager.Instance.AddPlayer(this);
         mainCam = Camera.main;
         planet = GameObject.FindWithTag("Planet");
@@ -51,7 +53,7 @@ public class Player : MonoBehaviour
         {
             case ePlaceable.Tree:
                 {
-                    return tree.GetComponent<Tree>().price;
+                    return tree1.GetComponent<Tree>().price;
                 }
             case ePlaceable.House:
                 {
@@ -171,7 +173,11 @@ public class Player : MonoBehaviour
         {
             case ePlaceable.Tree:
                 {
-                    return (GameObject)Instantiate(tree);
+                    if (rng.Next(11) < 5)
+                    {
+                        return (GameObject) Instantiate(tree1);
+                    }
+                    else return (GameObject)Instantiate(tree2);
                 }
             case ePlaceable.House:
                 {

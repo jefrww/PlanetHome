@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,14 +10,14 @@ public class GameManager : MonoBehaviour
     private Player player;
 
     public int population = 2;
-    public int populationCap = 1024;
+    public int populationCap = 0;
     public int populationGrowthTime = 5;
-    public float populationGrowthRate = 1.2f;
+    //public float populationGrowthRate = 1.2f;
     public int populationSpawnTime = 0;
-    public float income = 0.5f;
+    public float income = 0.2f;
     public int pollution = 0;
-    public int pollutionRate;
-    public int credits = 0;
+    public int pollutionRate = 0;
+    public int credits = 200;
     public int creditRate = 1;
     public int tick = 1;
     public int tickTimer = 0;
@@ -29,6 +30,31 @@ public class GameManager : MonoBehaviour
     private List<Shelter> shelters;
     private List<Tree> trees;
     private List<Factory> factories;
+
+    public void ResetInitialState()
+    {
+        population = 2;
+        populationCap = 0;
+        populationGrowthTime = 5;
+        //populationGrowthRate = 1.2f;
+        populationSpawnTime = 0;
+        income = 0.2f;
+        pollution = 0;
+        pollutionRate = 0;
+        credits = 200;
+        creditRate = 1;
+        tick = 1;
+        tickTimer = 0;
+        power = 0;
+        powerPerCitizen = 1f;
+        changedPopulationCap = false;
+        changedPollutionRate = false;
+        year = 1960;
+        elapsedTime = 0;
+        shelters = new List<Shelter>();
+        trees = new List<Tree>();
+        factories = new List<Factory>();
+    }
 
     void Awake()
     {
@@ -72,6 +98,7 @@ public class GameManager : MonoBehaviour
         }
         if (changedHudValue) HUD.UpdateHUD(population, populationCap, pollution, credits, power, year);
         selectBuilding();
+        if (GameIsOver()) SceneManager.LoadScene("StartWindow");
     }
 
     public void AddShelter(Shelter shelter)
@@ -208,6 +235,20 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown("t"))
         {
             player.SetSelected(Player.ePlaceable.Factory);
+        }
+    }
+
+    public bool GameIsOver()
+    {
+        int overpopulation = population - populationCap;
+        int tenPercent = (populationCap / 100) * 10;
+        if (overpopulation > 10 && overpopulation > tenPercent) return true;
+        else if (credits < -10) return true;
+        else if (power < -10) return true;
+        else if (pollution >= 250) return true;
+        else
+        {
+            return false;
         }
     }
 }
