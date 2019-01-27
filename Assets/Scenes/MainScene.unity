@@ -344,7 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tree: {fileID: 1545593877246334, guid: 485883308a530c3479c6f4827e0564c3, type: 2}
   house: {fileID: 1007156947994880, guid: 6592bcf5885b14b0f815139725a6d0c3, type: 2}
-  skyscraper: {fileID: 0}
+  skyscraper: {fileID: 1743490802049272, guid: a20d98d8ce568a44b9a96de2d4e615c7, type: 2}
   factory: {fileID: 1878167587935962, guid: 3a2f488f5c4fb3d4ebac8c49ccb86ee3, type: 2}
   previewMaterial: {fileID: 2100000, guid: fac0858d55a0f4dfaac170da079ec637, type: 2}
 --- !u!1 &1016474561 stripped
