@@ -186,6 +186,7 @@ public class GameManager : MonoBehaviour
     {
         credits -= price;
     }
+
     public void selectBuilding()
     {
         if (Input.GetKeyDown("q"))
@@ -201,6 +202,10 @@ public class GameManager : MonoBehaviour
             player.SetSelected(Player.ePlaceable.House);
         }
         if (Input.GetKeyDown("r"))
+        {
+            player.SetSelected(Player.ePlaceable.Skyscraper);
+        }
+        if (Input.GetKeyDown("t"))
         {
             player.SetSelected(Player.ePlaceable.Factory);
         }

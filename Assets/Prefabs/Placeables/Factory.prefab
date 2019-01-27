@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a9e0b4036fe4063bfea81574628013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 0
+  price: 100
   radius: 0
   collisions: 0
-  powerRate: 0
+  powerRate: 20
   pollutionRate: 0

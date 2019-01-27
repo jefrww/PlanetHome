@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject tree, house, factory;
+    public GameObject tree, house, skyscraper, factory;
     public Material previewMaterial;
-    public enum ePlaceable { None, Tree, House, Factory };
+    public enum ePlaceable { None, Tree, House, Factory, Skyscraper };
 
     private Camera mainCam;
     private GameObject planet;
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         PreviewPlacement();
         if (Input.GetMouseButtonDown(0))
         {
-            PlaceObject();
+            if(CanBuy()) PlaceObject();
         }
     }
 
@@ -44,6 +44,35 @@ public class Player : MonoBehaviour
         selected = select;
         UpdatePreviewObject();
     }
+
+    public int GetCost(ePlaceable placeable)
+    {
+        switch (placeable)
+        {
+            case ePlaceable.Tree:
+                {
+                    return tree.GetComponent<Tree>().price;
+                }
+            case ePlaceable.House:
+                {
+                    return house.GetComponent<Shelter>().price;
+                }
+            case ePlaceable.Skyscraper:
+                {
+                    return skyscraper.GetComponent<Shelter>().price;
+                }
+            case ePlaceable.Factory:
+                {
+                    return factory.GetComponent<Factory>().price;
+                }
+            default:
+                {
+                    return 0;
+                }
+        }
+    }
+
+    /*** Private Section ***/
 
     private void PreviewPlacement()
     {
@@ -97,8 +126,9 @@ public class Player : MonoBehaviour
             {
                 Debug.DrawLine(mainCam.transform.position, hit.point, Color.red);
                 Debug.DrawRay(mainCam.transform.position, mainCam.transform.position - hit.point, Color.green);
-                var objRot = Quaternion.LookRotation(hit.normal);
 
+                GameManager.Instance.credits -= GetCost(selected);
+                var objRot = Quaternion.LookRotation(hit.normal);
                 var placedObj = InstantiateSelected();
                 placedObj.transform.position = hit.point;
                 placedObj.transform.rotation = objRot;
@@ -111,6 +141,11 @@ public class Player : MonoBehaviour
                             break;
                         }
                     case ePlaceable.House:
+                        {
+                            placedObj.GetComponent<Shelter>().Place();
+                            break;
+                        }
+                    case ePlaceable.Skyscraper:
                         {
                             placedObj.GetComponent<Shelter>().Place();
                             break;
@@ -146,6 +181,10 @@ public class Player : MonoBehaviour
                 {
                     return (GameObject)Instantiate(factory);
                 }
+            case ePlaceable.Skyscraper:
+                {
+                    return (GameObject)Instantiate(skyscraper);
+                }
             default:
                 {
                     Debug.Log("Error: No valid Placeable selected!");
@@ -160,6 +199,11 @@ public class Player : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private bool CanBuy()
+    {
+        return GetCost(selected) <= GameManager.Instance.credits;;
     }
 
     private void UpdatePreviewObject()
