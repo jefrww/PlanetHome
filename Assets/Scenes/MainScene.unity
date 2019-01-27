@@ -287,7 +287,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.079476684, g: 0.18814532, b: 0.3584906, a: 0}
+  m_BackGroundColor: {r: 0.04392132, g: 0.06277673, b: 0.1981132, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -374,8 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9cf6beb3b1b944a88e0b7dc8ba97190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 20
-  verticalSpeed: 20
+  horizontalSpeed: 5
+  verticalSpeed: 5
 --- !u!1 &1628522729
 GameObject:
   m_ObjectHideFlags: 0
