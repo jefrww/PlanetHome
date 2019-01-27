@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private CanvasManager HUD;
     private Player player;
+    private bool hardStop = false;
 
     public int population = 2;
     public int populationCap = 0;
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         shelters = new List<Shelter>();
         trees = new List<Tree>();
         factories = new List<Factory>();
+        DontDestroyOnLoad(this);
     }
     // Use this for initialization
     void Start()
@@ -72,33 +74,38 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool changedHudValue = false;
-        elapsedTime += Time.deltaTime;
-        if (elapsedTime >= tickTimer)
-        {
-            tickTimer += tick;
-            UpdateCredits();
-            UpdatePollutionRate();
-            UpdatePollution();
-            UpdatePower();
-            changedHudValue = true;
+        if (!hardStop) {
+            bool changedHudValue = false;
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= tickTimer)
+            {
+                tickTimer += tick;
+                UpdateCredits();
+                UpdatePollutionRate();
+                UpdatePollution();
+                UpdatePower();
+                changedHudValue = true;
+            }
+            if (elapsedTime >= populationSpawnTime)
+            {
+                populationSpawnTime += populationGrowthTime;
+                UpdatePopulation();
+                UpdateCreditRate();
+                changedHudValue = true;
+            }
+            if (changedPopulationCap)
+            {
+                UpdatePopulationCap();
+                changedPopulationCap = false;
+                changedHudValue = true;
+            }
+            //if (changedHudValue) HUD.UpdateHUD(population, populationCap, pollution, credits, power, year);
+            selectBuilding();
+            if (GameIsOver()) {
+                hardStop = true;
+                SceneManager.LoadScene("GameOver");
+            }
         }
-        if (elapsedTime >= populationSpawnTime)
-        {
-            populationSpawnTime += populationGrowthTime;
-            UpdatePopulation();
-            UpdateCreditRate();
-            changedHudValue = true;
-        }
-        if (changedPopulationCap)
-        {
-            UpdatePopulationCap();
-            changedPopulationCap = false;
-            changedHudValue = true;
-        }
-        //if (changedHudValue) HUD.UpdateHUD(population, populationCap, pollution, credits, power, year);
-        selectBuilding();
-        if (GameIsOver()) SceneManager.LoadScene("StartWindow");
     }
 
     public void AddShelter(Shelter shelter)
@@ -156,7 +163,7 @@ public class GameManager : MonoBehaviour
     public void UpdatePollution()
     {
         pollution += pollutionRate;
-        //if (pollution < 0) pollution = 0;
+        if (pollution < 0) pollution = 0;
     }
 
     public void UpdatePollutionRate()

@@ -32,7 +32,7 @@ public class BarController : MonoBehaviour {
 		}
 		co2percentage = ((float) co2 / (float) co2max) * 100f;
 		ypos = (float) min + co2percentage * rangebit;
-		Debug.Log(ypos);
+		//Debug.Log(ypos);
 		rt.anchoredPosition = new Vector3(rt.anchoredPosition.x, ypos);
 	}
 }

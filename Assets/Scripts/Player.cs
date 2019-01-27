@@ -21,11 +21,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD
         rng = new System.Random();
-=======
         sound = this.transform.GetComponent<SFX>();
->>>>>>> master
         GameManager.Instance.AddPlayer(this);
         mainCam = Camera.main;
         planet = GameObject.FindWithTag("Planet");
@@ -232,7 +229,7 @@ public class Player : MonoBehaviour
             var mats = previewObj.GetComponent<MeshRenderer>().materials;
             for (int i = 0; i < mats.Length; i++)
             {
-                Debug.Log("Change Mat");
+                //Debug.Log("Change Mat");
                 mats[i] = previewMaterial;
             }
             previewObj.GetComponent<MeshRenderer>().materials = mats;
