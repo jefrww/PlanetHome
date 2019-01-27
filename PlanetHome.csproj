@@ -352,7 +352,6 @@
     <Compile Include="Assets\Scripts\Shelter.cs" />
     <Compile Include="Assets\Scripts\StartApplication.cs" />
     <Compile Include="Assets\Scripts\Tree.cs" />
-    <Compile Include="Assets\Scripts\VFX.cs" />
     <Compile Include="Assets\UI\UIScripts\BarController.cs" />
     <Compile Include="Assets\UI\UIScripts\UIController.cs" />
   </ItemGroup>
